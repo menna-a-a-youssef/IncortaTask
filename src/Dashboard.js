@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems } from './listItems';
+import ListItems from './ListItems';
 import Chart from './Chart';
 import {indigo} from "@material-ui/core/colors";
 
@@ -150,7 +150,9 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
+          <List>
+            <ListItems/>
+          </List>
         </Drawer>
         <Box
           component="main"

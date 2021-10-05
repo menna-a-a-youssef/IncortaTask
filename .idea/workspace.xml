@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3ade6f20-5fc5-4a12-8920-7d3afb28543d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deposits.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Orders.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/listItems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListItems.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +46,7 @@
       <option name="presentableId" value="Default" />
       <updated>1633380052516</updated>
       <workItem from="1633380055502" duration="40000" />
-      <workItem from="1633416882917" duration="7565000" />
+      <workItem from="1633416882917" duration="10216000" />
     </task>
     <servers />
   </component>
