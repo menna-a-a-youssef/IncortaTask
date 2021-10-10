@@ -131,7 +131,8 @@ function DashboardContent() {
           <Drawer variant="permanent" open={open} sx={{
             width: drawerWidth,
             flexShrink: 0,
-            [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+              overflow: 'visible',
+                  [`& .MuiDrawer-paper`]: { overflow: 'visible',width: drawerWidth, boxSizing: 'border-box' },
           }}>
             <Toolbar
                 sx={{
@@ -156,7 +157,7 @@ function DashboardContent() {
               </IconButton>
             </Toolbar>
             <Divider />
-            <List>
+            <List sx={{ overflow: 'visible' }}>
               <ListItems/>
             </List>
           </Drawer>
@@ -178,6 +179,7 @@ function DashboardContent() {
                 {/* Chart */}
                 <Grid item xs={12} md={12} lg={12}>
                   <ColumnChips />
+                    <ColumnChips />
                   <Paper
                       sx={{
                         p: 2,

@@ -23,6 +23,24 @@ export default function ChipsArray() {
 
     return (
         <Paper
+             sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems:'center',
+            flexWrap: 'no-wrap',
+            listStyle: 'none',
+            p: 2,
+            m: 0,
+            mb:3,
+
+        }}
+               component="div"
+        >
+
+            Dimension
+        <Paper
+            elevation={0}
+            variant="outlined"
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -30,11 +48,12 @@ export default function ChipsArray() {
                 listStyle: 'none',
                 p: 0.5,
                 m: 0,
-                mb:5,
+                ml:2,
 
             }}
             component="ul"
         >
+
             {chipData.map((data) => {
                 let icon;
 
@@ -52,6 +71,7 @@ export default function ChipsArray() {
                     </ListItem>
                 );
             })}
+        </Paper>
         </Paper>
     );
 }

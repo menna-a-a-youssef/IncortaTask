@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -25,15 +26,29 @@ class ChartColumns extends React.Component{
             .then(results => results.json())
             .then(results=>this.setState({'columns':results}));
     }
+    handleStart(){
+    }
+    handleStop(){
+    }
     render(){
         return (
             <div>
                 {this.state.columns.map(function(column,index){
                     return (
-                        <ListItem key={index} button sx={{
-                            pl:3}}>
-                            <ListItemText primary={column.name} />
-                        </ListItem>
+                        <Draggable
+                            handle=".handle"
+                            defaultPosition={{x: 0, y: 0}}
+                            // onStart={this.handleStart}
+                            // onDrag={this.handleDrag}
+                            // onStop={this.handleStop}
+                        >
+                            <ListItem  className="handle" key={index} button sx={{
+                                pl:3,
+
+                                overflow: 'visible',}}>
+                                <ListItemText primary={column.name} />
+                            </ListItem>
+                        </Draggable>
                     )
                 })}
 

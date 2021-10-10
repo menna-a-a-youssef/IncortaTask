@@ -1,10 +1,85 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import Draggable from "react-draggable";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+
+
+class ChartDate extends React.Component{
+    constructor() {
+        super ();
+        this.state={
+            'data':[]
+        }
+    }
+    componentDidMount() {
+        this.getData();
+    }
+    getData(){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:  JSON.stringify({
+
+                "dimension":"Product",
+                "measures":["Cost"],
+            })
+        };
+        fetch('https://plotter-task.herokuapp.com/data', requestOptions)
+            .then(results => results.json())
+            .then(results=>this.setState({'data':
+                    results.map(function(column,index){
+"measure":column.values,"dimension":column.values
+                    })
+            }));
+    }
+    render(){
+        return (
+            <ResponsiveContainer>
+                <LineChart
+                    data={this.state.data}
+                    margin={{
+                        top: 16,
+                        right: 16,
+                        bottom: 0,
+                        left: 24,
+                    }}
+                >
+                    <XAxis
+                        dataKey="dimension"
+
+                    />
+                    <YAxis
+
+                    >
+                        <Label
+                            angle={270}
+                            position="left"
+                            style={{
+                                textAnchor: 'middle',
+                            }}
+                        >
+                            Sales ($)
+                        </Label>
+                    </YAxis>
+                    <Line
+                        isAnimationActive={false}
+                        type="monotone"
+                        dataKey="measures"
+                        dot={true}
+                    />
+                </LineChart>
+            </ResponsiveContainer>
+        );
+    }
+};
+
+
 
 // Generate Sales Data
-function createData(time, amount) {
-  return { time, amount };
+function createData(dimension, measures) {
+  return { dimension, measures };
 }
 
 const data = [
@@ -16,54 +91,15 @@ const data = [
   createData('15:00', 2000),
   createData('18:00', 2400),
   createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('24:00', 3000),
 ];
 
 export default function Chart() {
   const theme = useTheme();
-
+console.log(data);
   return (
     <React.Fragment>
-      <ResponsiveContainer>
-        <LineChart
-          data={data}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24,
-          }}
-        >
-          <XAxis
-            dataKey="time"
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          />
-          <YAxis
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          >
-            <Label
-              angle={270}
-              position="left"
-              style={{
-                textAnchor: 'middle',
-                fill: theme.palette.text.primary,
-                ...theme.typography.body1,
-              }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            isAnimationActive={false}
-            type="monotone"
-            dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+        <ChartDate />
     </React.Fragment>
   );
 }
