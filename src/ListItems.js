@@ -23,9 +23,13 @@ class ChartColumns extends React.Component{
     }
 
     render(){
+        function handleOnDragEnd(result) {
+            if (!result.destination) return;
 
+           console.log(result);
+        }
         return (
-            <DragDropContext>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="characters">
                     {(provided) => (
             <div className="characters" {...provided.droppableProps} ref={provided.innerRef}>
@@ -56,6 +60,7 @@ class ChartColumns extends React.Component{
     }
 };
 export default function ListItems(){
+
     return (
             <ChartColumns />
     );
