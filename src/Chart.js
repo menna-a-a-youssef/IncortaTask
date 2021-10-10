@@ -22,17 +22,21 @@ class ChartDate extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body:  JSON.stringify({
 
-                "dimension":"Product",
-                "measures":["Cost"],
+                "dimension":"Year",
+                "measures":["Units sold"],
             })
         };
         fetch('https://plotter-task.herokuapp.com/data', requestOptions)
             .then(results => results.json())
-            .then(results=>this.setState({'data':
-                    results.map(function(column,index){
-"measure":column.values,"dimension":column.values
-                    })
-            }));
+            .then(results=>this.setState({'data':this.prepareData(results)}));
+    }
+    prepareData(data){
+        let preparedData = [] ;
+        for(let i = 0 ; i< data[0].values.length ; i++){
+            preparedData.push({"dimension":data[0].values[i],"measures":data[1].values[i]})
+        }
+        console.log(preparedData);
+        return preparedData;
     }
     render(){
         return (
@@ -75,28 +79,7 @@ class ChartDate extends React.Component{
     }
 };
 
-
-
-// Generate Sales Data
-function createData(dimension, measures) {
-  return { dimension, measures };
-}
-
-const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 2400),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', 3000),
-];
-
 export default function Chart() {
-  const theme = useTheme();
-console.log(data);
   return (
     <React.Fragment>
         <ChartDate />
