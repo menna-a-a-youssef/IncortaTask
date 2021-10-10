@@ -1,12 +1,7 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-import Draggable from "react-draggable";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 
-
-class ChartDate extends React.Component{
+class ChartData extends React.Component{
     constructor() {
         super ();
         this.state={
@@ -82,7 +77,7 @@ class ChartDate extends React.Component{
 export default function Chart() {
   return (
     <React.Fragment>
-        <ChartDate />
+        <ChartData />
     </React.Fragment>
   );
 }
