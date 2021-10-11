@@ -17,7 +17,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ListItems from './ListItems';
 import Chart from './Chart';
 import {indigo} from "@material-ui/core/colors";
-import ColumnChips from "./ColumnChips"
+import DimensionField from "./DimensionField"
+import MeasuresField from "./MeasuresField"
+
 
 const drawerWidth = 240;
 
@@ -162,8 +164,9 @@ function DashboardContent() {
               <Grid container spacing={3}>
                 {/* Chart */}
                 <Grid item xs={12} md={12} lg={12}>
-                  <ColumnChips />
-                    <ColumnChips />
+                    <DimensionField />
+                  <MeasuresField />
+                    {/*<ColumnChips />*/}
                   <Paper
                       sx={{
                         p: 2,

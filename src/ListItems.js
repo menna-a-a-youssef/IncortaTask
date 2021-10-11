@@ -30,9 +30,9 @@ class ChartColumns extends React.Component{
         }
         return (
             <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="characters">
+            <Droppable droppableId="columns">
                     {(provided) => (
-            <div className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+            <div className="columns" {...provided.droppableProps} ref={provided.innerRef}>
                 {this.state.columns.map(function(column,index){
                     return (
                         <Draggable key={index} draggableId={column.name} index={index}>

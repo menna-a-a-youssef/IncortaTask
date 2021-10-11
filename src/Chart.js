@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import ChipsArray from "./DimensionField";
 
 class ChartData extends React.Component{
     constructor() {
         super ();
         this.state={
-            'data':[]
+            'data':[],
+            'chips':ChipsArray,
         }
     }
     componentDidMount() {
         this.getData();
     }
     getData(){
+        console.log(this.state.chips);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

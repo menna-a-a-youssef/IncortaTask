@@ -2,25 +2,25 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import TagFacesIcon from '@mui/icons-material/TagFaces';
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 
 const ListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
 }));
-
 export default function ChipsArray() {
     const [chipData, setChipData] = React.useState([
-        { key: 0, label: 'Angular' },
-        { key: 1, label: 'jQuery' },
-        { key: 2, label: 'Polymer' },
-        { key: 3, label: 'React' },
-        { key: 4, label: 'Vue.js' },
+        { key: 0, label: 'Year' },
     ]);
+    console.log(chipData[0].label)
 
     const handleDelete = (chipToDelete) => () => {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
     };
+    function handleOnDragEnd(result) {
+        if (!result.destination) return;
 
+        console.log(result);
+    }
     return (
         <Paper
              sx={{
@@ -38,14 +38,19 @@ export default function ChipsArray() {
         >
 
             Dimension
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="dimensionChip" direction="horizontal" >
+                    {(provided) => (
         <Paper
+            className="dimensionChip" {...provided.droppableProps} ref={provided.innerRef}
             elevation={0}
             variant="outlined"
             sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 flexWrap: 'wrap',
                 listStyle: 'none',
+                flex:1,
                 p: 0.5,
                 m: 0,
                 ml:2,
@@ -55,23 +60,29 @@ export default function ChipsArray() {
         >
 
             {chipData.map((data) => {
-                let icon;
-
-                if (data.label === 'React') {
-                    icon = <TagFacesIcon />;
-                }
 
                 return (
-                    <ListItem key={data.key}>
+                    <Draggable key={data.key} draggableId={data.label} index={data.key}>
+                        {(provided) => (
+                    <ListItem
+                        ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+                    >
                         <Chip
-                            icon={icon}
                             label={data.label}
-                            onDelete={data.label === 'React' ? undefined : handleDelete(data)}
+                            onDelete={handleDelete(data)}
                         />
                     </ListItem>
+                        )}
+                    </Draggable>
+
                 );
+
             })}
+            {provided.placeholder}
         </Paper>
+                    )}
+                </Droppable>
+            </DragDropContext>
         </Paper>
     );
 }
